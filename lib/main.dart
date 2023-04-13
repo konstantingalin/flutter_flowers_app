@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_flowers_app/widgets/header.dart';
+import 'package:flutter_flowers_app/screens/home_scrren.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,14 +10,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(60),
-          child: Header(),
-        ),
-        body: null,
-      ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      initialRoute: '/',
+
+      routes: {
+        HomeScreen.routeName: (context) => const HomeScreen(),
+      },
     );
   }
 }
