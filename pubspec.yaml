@@ -63,6 +63,11 @@ flutter:
     - assets/icons/mainLogo.png
     - assets/icons/mapIcon.png
     - assets/icons/menuBurger.png
+    - assets/icons/homeIcon.png
+    - assets/icons/cartIcon.png
+    - assets/icons/favoriteIcon.png
+    - assets/icons/ordersIcon.png
+    - assets/icons/profileIcon.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
