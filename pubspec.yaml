@@ -68,6 +68,7 @@ flutter:
     - assets/icons/favoriteIcon.png
     - assets/icons/ordersIcon.png
     - assets/icons/profileIcon.png
+    - assets/icons/filterIcon.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
