@@ -26,70 +26,112 @@ class HomeScreen extends StatelessWidget {
           left: 10,
           right: 10,
         ),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(
-                height: 20,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(
+              height: 10,
+            ),
+            ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color.fromARGB(255, 235, 235, 235),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
+                elevation: 0.0,
+                shadowColor: Colors.transparent,
               ),
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 235, 235, 235),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: const [
+                  Text(
+                    'Фильтры',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Color.fromRGBO(78, 78, 78, 1),
+                    ),
                   ),
-                  elevation: 0.0,
-                  shadowColor: Colors.transparent,
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: const [
-                    Text(
-                      'Фильтры',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Color.fromRGBO(78, 78, 78, 1),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 6,
-                    ),
-                    Image(
-                      image: AssetImage('assets/icons/filterIcon.png'),
-                      width: 18,
-                    ),
-                  ],
-                ),
+                  SizedBox(
+                    width: 6,
+                  ),
+                  Image(
+                    image: AssetImage('assets/icons/filterIcon.png'),
+                    width: 18,
+                  ),
+                ],
               ),
-              const SizedBox(
-                height: 20,
-              ),
-              const Text(
-                'Букеты-бестселлеры',
-                style: TextStyle(
-                  color: Color.fromRGBO(53, 53, 53, 1),
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              SingleChildScrollView(
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Expanded(
+              child: SingleChildScrollView(
                 child: Column(
                   children: <Widget>[
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height / 3.5,
-                          child: Image.asset(
-                            FlowerModel.sampleCards[0].thumbnailPath,
-                            fit: BoxFit.cover,
+                        const Text(
+                          'Букеты-бестселлеры',
+                          style: TextStyle(
+                            color: Color.fromRGBO(53, 53, 53, 1),
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
                           ),
+                        ),
+                        const SizedBox(
+                          height: 16,
+                        ),
+                        Stack(
+                          children: [
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width,
+                              height: MediaQuery.of(context).size.height / 4,
+                              child: Image.asset(
+                                FlowerModel.sampleCards[0].thumbnailPath,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            Positioned(
+                              height: 30,
+                              width: 30,
+                              top: 10,
+                              right: 10,
+                              child: IconButton(
+                                onPressed: () {},
+                                padding: EdgeInsets.zero,
+                                icon: const Icon(
+                                  Icons.favorite_border_rounded,
+                                  color: Colors.red,
+                                  size: 30.0,
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              top: 10,
+                              left: 10,
+                              child: Container(
+                                padding: const EdgeInsets.only(
+                                  left: 12.0,
+                                  right: 12.0,
+                                  top: 6.0,
+                                  bottom: 9.0,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFF572C5),
+                                  borderRadius: BorderRadius.circular(20.0),
+                                ),
+                                child: const Text(
+                                  'Популярный',
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -128,7 +170,7 @@ class HomeScreen extends StatelessWidget {
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
-                        childAspectRatio: 1,
+                        childAspectRatio: 0.85,
                       ),
                       itemBuilder: (BuildContext context, int index) {
                         return Container(
@@ -154,10 +196,54 @@ class HomeScreen extends StatelessWidget {
                                   flex: 1,
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(0),
-                                    child: Image.asset(
-                                      FlowerModel
-                                          .sampleCards[index + 1].thumbnailPath,
-                                      fit: BoxFit.cover,
+                                    child: Stack(
+                                      fit: StackFit.expand,
+                                      children: [
+                                        Image.asset(
+                                          FlowerModel.sampleCards[index + 1]
+                                              .thumbnailPath,
+                                          fit: BoxFit.cover,
+                                        ),
+                                        Positioned(
+                                          height: 26,
+                                          width: 26,
+                                          top: 8,
+                                          right: 8,
+                                          child: IconButton(
+                                            onPressed: () {},
+                                            padding: EdgeInsets.zero,
+                                            icon: const Icon(
+                                              Icons.favorite_border_rounded,
+                                              color: Colors.red,
+                                              size: 26.0,
+                                            ),
+                                          ),
+                                        ),
+                                        Positioned(
+                                          top: 8,
+                                          left: 8,
+                                          child: Container(
+                                            padding: const EdgeInsets.only(
+                                              left: 6.0,
+                                              right: 6.0,
+                                              top: 6.0,
+                                              bottom: 8.0,
+                                            ),
+                                            decoration: BoxDecoration(
+                                              color: Color(0xFFF572C5),
+                                              borderRadius:
+                                                  BorderRadius.circular(20.0),
+                                            ),
+                                            child: const Text(
+                                              'Популярный',
+                                              style: TextStyle(
+                                                fontSize: 8,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
@@ -197,9 +283,9 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-              )
-            ],
-          ),
+              ),
+            )
+          ],
         ),
       ),
     );
