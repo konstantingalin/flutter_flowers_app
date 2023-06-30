@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../models/flower_model.dart';
 import '../widgets/bottom_nav_bar.dart';
+import '../widgets/custom_tag.dart';
 import '../widgets/header.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -119,29 +120,11 @@ class HomeScreen extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              Positioned(
-                                top: 10,
-                                left: 10,
-                                child: Container(
-                                  padding: const EdgeInsets.only(
-                                    left: 12.0,
-                                    right: 12.0,
-                                    top: 6.0,
-                                    bottom: 9.0,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xFFF572C5),
-                                    borderRadius: BorderRadius.circular(20.0),
-                                  ),
-                                  child: const Text(
-                                    'Хит продаж',
-                                    style: TextStyle(
-                                      fontSize: 10,
-                                      color: Colors.white,
-                                    ),
-                                  ),
+                              if (FlowerModel.sampleCards[0].tag.isNotEmpty)
+                                CustomTag(
+                                  typeTag: FlowerModel.sampleCards[0].tag,
+                                  size: 'medium',
                                 ),
-                              ),
                             ],
                           ),
                           Column(
@@ -240,30 +223,13 @@ class HomeScreen extends StatelessWidget {
                                               ),
                                             ),
                                           ),
-                                          Positioned(
-                                            top: 8,
-                                            left: 8,
-                                            child: Container(
-                                              padding: const EdgeInsets.only(
-                                                left: 6.0,
-                                                right: 6.0,
-                                                top: 6.0,
-                                                bottom: 6.0,
-                                              ),
-                                              decoration: BoxDecoration(
-                                                color: const Color(0xFF3DBCCD),
-                                                borderRadius:
-                                                    BorderRadius.circular(20.0),
-                                              ),
-                                              child: const Text(
-                                                'Популярный',
-                                                style: TextStyle(
-                                                  fontSize: 8,
-                                                  color: Colors.white,
-                                                ),
-                                              ),
+                                          if (FlowerModel.sampleCards[index + 1]
+                                              .tag.isNotEmpty)
+                                            CustomTag(
+                                              typeTag: FlowerModel
+                                                  .sampleCards[index + 1].tag,
+                                              size: 'small',
                                             ),
-                                          ),
                                         ],
                                       ),
                                     ),

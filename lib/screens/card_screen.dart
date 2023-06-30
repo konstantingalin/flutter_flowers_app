@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_flowers_app/widgets/custom_tag.dart';
 import '../models/flower_model.dart';
 import '../widgets/bottom_nav_bar.dart';
 import '../widgets/header.dart';
@@ -37,29 +38,11 @@ class CardScreen extends StatelessWidget {
                       fit: BoxFit.cover,
                     ),
                   ),
-                  Positioned(
-                    top: 10,
-                    left: 10,
-                    child: Container(
-                      padding: const EdgeInsets.only(
-                        left: 12.0,
-                        right: 12.0,
-                        top: 6.0,
-                        bottom: 9.0,
-                      ),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFF572C5),
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      child: const Text(
-                        'Хит продаж',
-                        style: TextStyle(
-                          fontSize: 10,
-                          color: Colors.white,
-                        ),
-                      ),
+                  if (card.tag.isNotEmpty)
+                    CustomTag(
+                      typeTag: card.tag,
+                      size: 'medium',
                     ),
-                  ),
                 ],
               ),
               const SizedBox(height: 16),

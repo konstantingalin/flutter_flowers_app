@@ -33,6 +33,7 @@ class FlowerModel {
   final String price;
   final String thumbnailPath;
   final String composition;
+  final String tag;
   final List<String> categories;
   final List<String> priceCategory;
   final List<String> color;
@@ -49,6 +50,7 @@ class FlowerModel {
     required this.composition,
     required this.color,
     required this.type,
+    required this.tag,
   });
 
   static List<FlowerModel> sampleCards = [
@@ -68,6 +70,7 @@ class FlowerModel {
       priceCategory: [FlowerPrice.medium],
       color: [FlowerColor.white, FlowerColor.pink, FlowerColor.yellow],
       type: [FlowerType.rose],
+      tag: 'popular',
     ),
     FlowerModel(
       id: 2,
@@ -81,6 +84,7 @@ class FlowerModel {
       priceCategory: [FlowerPrice.medium],
       color: [FlowerColor.white, FlowerColor.pink, FlowerColor.red],
       type: [FlowerType.multi],
+      tag: '',
     ),
     FlowerModel(
       id: 3,
@@ -94,6 +98,7 @@ class FlowerModel {
       priceCategory: [FlowerPrice.budgetary],
       color: [FlowerColor.white, FlowerColor.pink, FlowerColor.yellow],
       type: [FlowerType.eustoma],
+      tag: 'hit',
     ),
     FlowerModel(
       id: 4,
@@ -111,6 +116,7 @@ class FlowerModel {
       priceCategory: [FlowerPrice.expensive],
       color: [FlowerColor.white, FlowerColor.pink],
       type: [FlowerType.rose],
+      tag: 'new',
     ),
     FlowerModel(
       id: 5,
@@ -124,6 +130,7 @@ class FlowerModel {
       priceCategory: [FlowerPrice.medium],
       color: [FlowerColor.white, FlowerColor.red],
       type: [FlowerType.rose],
+      tag: 'discount',
     ),
   ];
 }
