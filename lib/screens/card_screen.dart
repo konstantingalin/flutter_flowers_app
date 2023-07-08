@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_flowers_app/widgets/custom_tag.dart';
+import '../bloc/favorite/favorite_bloc.dart';
 import '../models/flower_model.dart';
 import '../widgets/bottom_nav_bar.dart';
 import '../widgets/header.dart';
@@ -8,6 +9,8 @@ class CardScreen extends StatelessWidget {
   late FlowerModel card;
 
   CardScreen({Key? key}) : super(key: key);
+
+  final _favorite_bloc = FavoriteBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -281,7 +284,9 @@ class CardScreen extends StatelessWidget {
                   ),
                   const SizedBox(width: 24),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      _favorite_bloc.add(AddFavorite());
+                    },
                     padding: EdgeInsets.zero,
                     icon: const Icon(
                       Icons.favorite_border_rounded,
