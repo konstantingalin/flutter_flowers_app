@@ -17,7 +17,7 @@ class ProfileScreen extends StatelessWidget {
           child: Header(),
         ),
       ),
-      bottomNavigationBar: BottomNavBar(index: 1),
+      bottomNavigationBar: BottomNavBar(index: 4),
       body: Text('Профиль'),
     );
   }

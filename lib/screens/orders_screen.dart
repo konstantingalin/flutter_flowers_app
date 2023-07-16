@@ -17,7 +17,7 @@ class OrdersScreen extends StatelessWidget {
           child: Header(),
         ),
       ),
-      bottomNavigationBar: BottomNavBar(index: 3),
+      bottomNavigationBar: BottomNavBar(index: 2),
       body: Text('Заказы'),
     );
   }

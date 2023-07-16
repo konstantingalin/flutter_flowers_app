@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_flowers_app/widgets/custom_tag.dart';
 import '../bloc/favorite/favorite_bloc.dart';
 import '../models/flower_model.dart';
@@ -283,17 +284,42 @@ class CardScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 24),
-                  IconButton(
-                    onPressed: () {
-                      _favorite_bloc.add(AddFavorite());
+                  BlocBuilder<FavoriteBloc, FavoriteState>(
+                    bloc: _favorite_bloc,
+                    builder: (context, state) {
+                      if (state is FavoriteAddedState) {
+                        return IconButton(
+                          onPressed: () {
+                            _favorite_bloc.add(AddFavorite(
+                              FlowerCard: card,
+                            ));
+                          },
+                          padding: EdgeInsets.zero,
+                          icon: Icon(
+                            state.isFavorite
+                                ? Icons.favorite
+                                : Icons.favorite_border_rounded,
+                            color: Color.fromARGB(255, 234, 84, 82),
+                            size: 40.0,
+                          ),
+                        );
+                      } else {
+                        return IconButton(
+                          onPressed: () {
+                            _favorite_bloc.add(AddFavorite(
+                              FlowerCard: card,
+                            ));
+                          },
+                          padding: EdgeInsets.zero,
+                          icon: Icon(
+                            Icons.favorite_border_rounded,
+                            color: Color.fromARGB(255, 234, 84, 82),
+                            size: 40.0,
+                          ),
+                        );
+                      }
                     },
-                    padding: EdgeInsets.zero,
-                    icon: const Icon(
-                      Icons.favorite_border_rounded,
-                      color: Color.fromARGB(255, 234, 84, 82),
-                      size: 40.0,
-                    ),
-                  ),
+                  )
                 ],
               ),
               const SizedBox(height: 16),
