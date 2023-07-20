@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_flowers_app/provider/favorite_provider.dart';
 import 'package:flutter_flowers_app/widgets/custom_tag.dart';
+import 'package:provider/provider.dart';
 import '../models/flower_model.dart';
 import '../widgets/bottom_nav_bar.dart';
 import '../widgets/header.dart';
@@ -14,6 +15,7 @@ class CardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     RouteSettings? settings = ModalRoute.of(context)?.settings;
     card = settings?.arguments as FlowerModel;
+    final provider = Provider.of<FavoriteProvider>(context);
 
     return Scaffold(
       appBar: const PreferredSize(
@@ -282,14 +284,21 @@ class CardScreen extends StatelessWidget {
                   ),
                   const SizedBox(width: 24),
                   IconButton(
-                    onPressed: () {},
-                    padding: EdgeInsets.zero,
-                    icon: Icon(
-                      Icons.favorite_border_rounded,
-                      color: Color.fromARGB(255, 234, 84, 82),
-                      size: 40.0,
-                    ),
-                  ),
+                      onPressed: () {
+                        provider.toggleFavorite(card);
+                      },
+                      padding: EdgeInsets.zero,
+                      icon: provider.isExist(card)
+                          ? const Icon(
+                              Icons.favorite,
+                              color: Color.fromARGB(255, 234, 84, 82),
+                              size: 40.0,
+                            )
+                          : const Icon(
+                              Icons.favorite_border_outlined,
+                              color: Color.fromARGB(255, 234, 84, 82),
+                              size: 40.0,
+                            )),
                 ],
               ),
               const SizedBox(height: 16),

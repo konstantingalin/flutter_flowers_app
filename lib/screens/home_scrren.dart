@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../models/flower_model.dart';
+import '../provider/favorite_provider.dart';
 import '../widgets/bottom_nav_bar.dart';
 import '../widgets/custom_tag.dart';
 import '../widgets/header.dart';
@@ -12,6 +14,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<FavoriteProvider>(context);
+
     return Scaffold(
       appBar: const PreferredSize(
         preferredSize: Size.fromHeight(70),
@@ -111,10 +115,15 @@ class HomeScreen extends StatelessWidget {
                                 top: 10,
                                 right: 10,
                                 child: IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    provider.toggleFavorite(
+                                        FlowerModel.sampleCards[0]);
+                                  },
                                   padding: EdgeInsets.zero,
-                                  icon: const Icon(
-                                    Icons.favorite_border_rounded,
+                                  icon: Icon(
+                                    provider.isExist(FlowerModel.sampleCards[0])
+                                        ? Icons.favorite
+                                        : Icons.favorite_border_rounded,
                                     color: Colors.red,
                                     size: 30.0,
                                   ),
@@ -214,13 +223,25 @@ class HomeScreen extends StatelessWidget {
                                             top: 8,
                                             right: 8,
                                             child: IconButton(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                provider.toggleFavorite(
+                                                    FlowerModel.sampleCards[
+                                                        index + 1]);
+                                              },
                                               padding: EdgeInsets.zero,
-                                              icon: const Icon(
-                                                Icons.favorite_border_rounded,
-                                                color: Colors.red,
-                                                size: 26.0,
-                                              ),
+                                              icon: provider.isExist(FlowerModel
+                                                      .sampleCards[index + 1])
+                                                  ? const Icon(
+                                                      Icons.favorite,
+                                                      color: Colors.red,
+                                                      size: 26.0,
+                                                    )
+                                                  : const Icon(
+                                                      Icons
+                                                          .favorite_border_rounded,
+                                                      color: Colors.red,
+                                                      size: 26.0,
+                                                    ),
                                             ),
                                           ),
                                           if (FlowerModel.sampleCards[index + 1]
