@@ -204,34 +204,41 @@ class CartScreen extends StatelessWidget {
                   ),
           ),
           if (cartFlowers.isNotEmpty)
-            Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.pushNamed(
-                    context,
-                    '/',
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFFE13E3C),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(100.0),
-                  ),
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 16.0, horizontal: 20.0),
-                  elevation: 0,
+            Column(
+              children: [
+                const SizedBox(
+                  height: 10,
                 ),
-                child: const Text(
-                  'Оформить заказ',
-                  style: TextStyle(
-                    fontSize: 16,
+                Center(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        '/',
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFFE13E3C),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(100.0),
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 16.0, horizontal: 20.0),
+                      elevation: 0,
+                    ),
+                    child: const Text(
+                      'Оформить заказ',
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
                   ),
                 ),
-              ),
+                const SizedBox(
+                  height: 16,
+                ),
+              ],
             ),
-          const SizedBox(
-            height: 16,
-          ),
         ],
       ),
     );
