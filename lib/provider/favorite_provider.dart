@@ -8,7 +8,6 @@ class FavoriteProvider extends ChangeNotifier {
 
   bool isExist(FlowerModel flower) {
     final isExist = _favorites_flowers.contains(flower);
-    print('Содежится ли $isExist');
     return isExist;
   }
 
@@ -17,10 +16,8 @@ class FavoriteProvider extends ChangeNotifier {
 
     if (isExist) {
       _favorites_flowers.remove(flower);
-      print('true');
     } else {
       _favorites_flowers.add(flower);
-      print('false');
     }
 
     notifyListeners();

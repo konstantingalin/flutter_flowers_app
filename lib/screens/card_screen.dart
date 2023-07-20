@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_flowers_app/provider/add_to_cart_provider.dart';
 import 'package:flutter_flowers_app/provider/favorite_provider.dart';
 import 'package:flutter_flowers_app/widgets/custom_tag.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +16,8 @@ class CardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     RouteSettings? settings = ModalRoute.of(context)?.settings;
     card = settings?.arguments as FlowerModel;
-    final provider = Provider.of<FavoriteProvider>(context);
+    final providerFavorites = Provider.of<FavoriteProvider>(context);
+    final providerCart = Provider.of<AddToCartProvider>(context);
 
     return Scaffold(
       appBar: const PreferredSize(
@@ -264,31 +266,40 @@ class CardScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFE13E3C),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(100.0),
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 16.0, horizontal: 20.0),
-                      elevation: 0,
-                    ),
-                    child: const Text(
-                      'Добавить в корзину',
-                      style: TextStyle(
-                        fontSize: 16,
-                      ),
-                    ),
-                  ),
+                  !providerCart.isExist(card)
+                      ? ElevatedButton(
+                          onPressed: () {
+                            providerCart.toggleFavorite(card);
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xFFE13E3C),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(100.0),
+                            ),
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 16.0, horizontal: 20.0),
+                            elevation: 0,
+                          ),
+                          child: const Text(
+                            'Добавить в корзину',
+                            style: TextStyle(
+                              fontSize: 16,
+                            ),
+                          ),
+                        )
+                      : const Text('Товар в корзине',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w300,
+                            color: Colors.red,
+                          )),
                   const SizedBox(width: 24),
                   IconButton(
                       onPressed: () {
-                        provider.toggleFavorite(card);
+                        providerFavorites.toggleFavorite(card);
                       },
                       padding: EdgeInsets.zero,
-                      icon: provider.isExist(card)
+                      icon: providerFavorites.isExist(card)
                           ? const Icon(
                               Icons.favorite,
                               color: Color.fromARGB(255, 234, 84, 82),

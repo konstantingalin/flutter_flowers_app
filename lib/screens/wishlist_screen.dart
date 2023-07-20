@@ -5,7 +5,7 @@ import '../widgets/bottom_nav_bar.dart';
 import '../widgets/header.dart';
 
 class WishlistScreen extends StatelessWidget {
-  WishlistScreen({super.key});
+  const WishlistScreen({super.key});
   static const routeName = '/wishlist';
 
   @override
@@ -20,7 +20,7 @@ class WishlistScreen extends StatelessWidget {
           child: Header(),
         ),
       ),
-      bottomNavigationBar: BottomNavBar(index: 1),
+      bottomNavigationBar: const BottomNavBar(index: 1),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -42,10 +42,53 @@ class WishlistScreen extends StatelessWidget {
           ),
           Expanded(
             child: flowersFavorites.isEmpty
-                ? const Center(
-                    child: Text(
-                      'Список пуст',
-                      style: TextStyle(fontSize: 18),
+                ? Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/icons/favoriteIcon.png',
+                          width: 48,
+                          height: 48,
+                          fit: BoxFit.cover,
+                        ),
+                        const SizedBox(
+                          height: 12,
+                        ),
+                        const Text(
+                          'Список пуст',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w300,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 24,
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.pushNamed(
+                              context,
+                              '/',
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xFFE13E3C),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(100.0),
+                            ),
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 16.0, horizontal: 20.0),
+                            elevation: 0,
+                          ),
+                          child: const Text(
+                            'Вернуться',
+                            style: TextStyle(
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   )
                 : Padding(
@@ -80,7 +123,6 @@ class WishlistScreen extends StatelessWidget {
                               ),
                               Expanded(
                                 child: Container(
-                                  margin: EdgeInsets.only(bottom: 20),
                                   decoration: const BoxDecoration(
                                     border: Border(
                                       bottom: BorderSide(

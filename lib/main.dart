@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_flowers_app/provider/add_to_cart_provider.dart';
 import 'package:flutter_flowers_app/provider/favorite_provider.dart';
 import 'package:flutter_flowers_app/screens/cart_screen.dart';
 import 'package:flutter_flowers_app/screens/home_scrren.dart';
@@ -18,8 +19,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => FavoriteProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => FavoriteProvider()),
+        ChangeNotifierProvider(create: (context) => AddToCartProvider()),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
